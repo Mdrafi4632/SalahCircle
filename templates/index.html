@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salah Circle</title>
+<link rel="icon" type="image/svg+xml" href="/static/salah-circle-logo-transparent.svg">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0d1b2a;
+  --navy2: #112236;
+  --card: #162a3f;
+  --card2: #1a3050;
+  --gold: #c9a96e;
+  --gold2: #e8c98a;
+  --text: #e8e8e8;
+  --muted: #7a9bb5;
+  --green: #4ade80;
+  --border: rgba(201,169,110,0.15);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--navy);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* Layout */
+.layout { display:grid; grid-template-columns:260px 1fr; min-height:100vh; }
+
+/* Sidebar */
+.sidebar {
+  background: var(--navy2);
+  border-right: 1px solid var(--border);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.logo {
+  text-align: center;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+
+.logo h1 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.6rem;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+
+.logo p { font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; }
+
+/* User section */
+.user-section label {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.join-form { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.join-form input {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.6rem 0.875rem;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.join-form input:focus { border-color: var(--gold); }
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  padding: 0.6rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: inherit;
+}
+
+.btn-gold:hover { background: var(--gold2); }
+
+.user-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--card);
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.user-avatar {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: var(--navy); font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.user-info { flex: 1; overflow: hidden; }
+.user-info strong { display: block; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.user-info span { font-size: 0.75rem; color: var(--muted); }
+
+/* Switch users */
+.switch-users { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.switch-btn {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.85rem;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.switch-btn:hover, .switch-btn.active {
+  background: var(--card);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.switch-dot {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--card2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 600; color: var(--gold);
+  flex-shrink: 0;
+}
+
+/* Nav */
+.sidebar-nav { margin-top: auto; display: flex; flex-direction: column; gap: 0.4rem; }
+
+.nav-link {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.65rem 0.875rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.nav-link:hover { background: var(--card); color: var(--text); }
+.nav-link.active { background: rgba(201,169,110,0.12); color: var(--gold); }
+.nav-icon { font-size: 1.1rem; }
+
+/* Main */
+.main { padding: 2.5rem; overflow-y: auto; }
+
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header .label {
+  font-size: 0.7rem; letter-spacing: 0.15em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 0.25rem;
+}
+
+.page-header h2 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 2.2rem; font-weight: 700;
+  color: var(--text);
+}
+
+.page-header p { color: var(--muted); font-size: 0.9rem; margin-top: 0.25rem; }
+
+/* Prayer cards */
+.prayers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.prayer-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.25s;
+  cursor: pointer;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.prayer-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--border);
+  transition: background 0.25s;
+}
+
+.prayer-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+
+.prayer-card.done {
+  background: rgba(201,169,110,0.06);
+  border-color: rgba(201,169,110,0.25);
+}
+
+.prayer-card.done::before { background: var(--gold); }
+
+.prayer-emoji { font-size: 1.8rem; margin-bottom: 0.75rem; }
+
+.prayer-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+.prayer-time {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.prayer-status {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  font-size: 1rem;
+  transition: all 0.25s;
+  margin: 0 auto;
+}
+
+.prayer-card.done .prayer-status {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: white;
+}
+
+/* Progress bar */
+.progress-section { margin-bottom: 2.5rem; }
+
+.progress-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.progress-label { font-size: 0.8rem; color: var(--muted); }
+.progress-count { font-size: 0.9rem; font-weight: 600; color: var(--gold); }
+
+.progress-bar {
+  height: 6px; background: var(--card2);
+  border-radius: 3px; overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+/* Social */
+.section-title {
+  font-size: 0.7rem; letter-spacing: 0.12em;
+  color: var(--muted); text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.social-grid { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.social-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+
+.social-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--card2), var(--navy2));
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: var(--gold); font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.social-info { flex: 1; }
+.social-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.4rem; }
+
+.prayer-dots { display: flex; gap: 0.35rem; }
+
+.dot {
+  width: 22px; height: 22px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; color: var(--muted);
+  background: var(--card2);
+  transition: all 0.2s;
+}
+
+.dot.done { background: rgba(201,169,110,0.2); border-color: rgba(201,169,110,0.4); color: var(--gold); }
+
+.social-score {
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--gold); text-align: right;
+}
+
+.social-score span { display: block; font-size: 0.7rem; color: var(--muted); font-weight: 400; }
+
+/* Welcome screen */
+.welcome {
+  max-width: 480px;
+  margin: 4rem auto;
+  text-align: center;
+}
+
+.welcome .bismillah {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 2rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  direction: rtl;
+}
+
+.welcome h2 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.welcome p { color: var(--muted); margin-bottom: 2rem; line-height: 1.6; }
+
+.welcome-form {
+  display: flex; gap: 0.75rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  flex-direction: column;
+}
+
+.welcome-form input {
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.875rem 1rem;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.welcome-form input:focus { border-color: var(--gold); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .main { padding: 1.5rem; }
+  .prayers-grid { grid-template-columns: repeat(3, 1fr); }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+     <img src="/static/salah-circle-logo-final.svg" width="160" height="160" style="display:block; margin:0 auto;">
+     <h1>SALAH CIRCLE</h1>
+     <p>Track . Motivate . Grow</p>
+    </div>
+
+    {% if user_id %}
+    <div class="user-section">
+      <label>Logged in as</label>
+      <div class="user-pill">
+        <div class="user-avatar">{{ user_name[0].upper() }}</div>
+        <div class="user-info">
+          <strong>{{ user_name }}</strong>
+          <span>Active today</span>
+        </div>
+      </div>
+    </div>
+
+    {% if users|length > 1 %}
+    <div class="user-section">
+      <label>Switch user</label>
+      <div class="switch-users">
+        {% for u in users %}
+          {% if u.id != user_id %}
+          <div style="display:flex; align-items:center; gap:0.4rem;">
+          <a href="/switch/{{ u.id }}" class="switch-btn" style="flex:1">
+            <div class="switch-dot">{{ u.name[0].upper() }}</div>
+            {{ u.name }}
+          </a>
+          <a href="/delete-user/{{ u.id }}"
+            onclick="return confirm('Delete {{ u.name }}?')"
+            style="color:#c9a96e; font-size:1.1rem; text-decoration:none; padding:0.4rem 0.6rem;">-</a>
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% else %}
+    <div style="background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.25rem;">
+      <div style="font-size: 0.7rem; letter-spacing: 0.12em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.75rem;">Hadith</div>
+      <div style="font-size: 0.88rem; color: var(--text); line-height: 1.7;">
+    The example of a good friend and a bad friend is like that of the musk seller and the blacksmith's bellows. From the musk seller you will either buy or enjoy its fragrance, while the bellows will either burn your clothes or you will get a foul smell from it.
+      </div>
+      <div style="margin-top: 0.75rem; font-size: 0.78rem; color: var(--gold);">— Al Bukhari and Muslim</div>
+    </div>
+    {% endif %}
+
+    <nav class="sidebar-nav">
+      <a href="/" class="nav-link active">
+        <span class="nav-icon"></span> TODAY
+      </a>
+      {% if user_id %}
+      <a href="/analytics" class="nav-link">
+        <span class="nav-icon"></span> ANALYTICS
+      </a>
+      <a href="/logout" class="nav-link">
+        <span class="nav-icon"></span> ACCOUNT
+      </a>
+      {% endif %}
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    {% if not user_id %}
+    <!-- Welcome screen -->
+    <div class="welcome">
+      <div class="bismillah">اَلسَّلَامُ عَلَيْكُمْ</div>
+      <h2>Track Your Daily Prayers</h2>
+      <p>Stay consistent, stay connected. Join the tracker and see how you and your friends are doing with your 5 daily prayers.</p>
+      <form method="POST" action="/join" class="welcome-form">
+        <input type="text" name="name" placeholder="Enter your name to get started..." required>
+        <button type="submit" class="btn-gold">Start Tracking →</button>
+      </form>
+      {% if users %}
+      <p style="margin-top:1.5rem; font-size:0.85rem; color:var(--muted);">
+        Already joined?
+        {% for u in users %}
+          <a href="/switch/{{ u.id }}" style="color:var(--gold); text-decoration:none; margin:0 0.25rem;">{{ u.name }}</a>
+        {% endfor %}
+      </p>
+      {% endif %}
+    </div>
+
+    {% else %}
+    <!-- Tracker view -->
+    <div class="page-header">
+      <div class="label">Today</div>
+      <h2>{{ user_name }}'s Prayers</h2>
+      <div style="font-size: 0.85rem; color: var(--muted); margin-top: 0.25rem;">{{ today_date }}</div>
+    </div>
+
+    <!-- Motivation -->
+    {% if motivation %}
+    <div style="background: rgba(201,169,110,0.08); border: 1px solid rgba(201,169,110,0.25); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; color: var(--gold); font-size: 0.9rem; line-height: 1.6;">
+       {{ motivation }}
+    </div>
+    {% endif %}
+
+    <!-- Progress -->
+    {% set today_count = prayers | selectattr('completed', 'equalto', 1) | list | length %}
+    <div class="progress-section">
+      <div class="progress-header">
+        <span class="progress-label">Daily progress</span>
+        <span class="progress-count">{{ today_count }} / 5</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: {{ (today_count / 5 * 100)|int }}%"></div>
+      </div>
+    </div>
+
+    <!-- Prayer cards -->
+    <div class="prayers-grid">
+      {% for prayer in prayers %}
+      <a href="/toggle/{{ prayer.prayer_name }}" class="prayer-card {% if prayer.completed %}done{% endif %}">
+        <div class="prayer-name">{{ prayer.prayer_name }}</div>
+        <div class="prayer-time">{{ prayer_times.get(prayer.prayer_name, '--:--') }}</div>
+        <div class="prayer-status"></div>
+      </a>
+      {% endfor %}
+    </div>
+
+    <!-- Social -->
+    {% if social %}
+    <div class="section-title">Friends Today</div>
+    <div class="social-grid">
+      {% for person in social %}
+      <div class="social-card">
+        <div class="social-avatar">{{ person.name[0].upper() }}</div>
+        <div class="social-info">
+          <div class="social-name">{{ person.name }}</div>
+          <div class="prayer-dots">
+            {% for pname in ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'] %}
+            <div class="dot {% if person.prayers.get(pname) %}done{% endif %}" title="{{ pname }}">
+              {{ pname[0] }}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="social-score">
+          {{ person.completed }}/5
+          <span>prayers</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endif %}
+  </main>
+</div>
+</body>
+</html>

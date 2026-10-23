@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytics</title>
+<link rel="icon" type="image/svg+xml" href="/static/salah-circle-logo-transparent.svg">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0d1b2a;
+  --navy2: #112236;
+  --card: #162a3f;
+  --card2: #1a3050;
+  --gold: #c9a96e;
+  --gold2: #e8c98a;
+  --text: #e8e8e8;
+  --muted: #7a9bb5;
+  --green: #4ade80;
+  --border: rgba(201,169,110,0.15);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--navy);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.layout { display:grid; grid-template-columns:260px 1fr; min-height:100vh; }
+
+/* Sidebar*/
+.sidebar {
+  background: var(--navy2);
+  border-right: 1px solid var(--border);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.logo { text-align: center; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; }
+.logo-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+.logo h1 { font-family: 'DM Sans', sans-serif; font-size: 1.6rem; color: var(--gold); letter-spacing: 0.05em; }
+.logo p { font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; }
+
+.user-pill {
+  display: flex; align-items: center; gap: 0.75rem;
+  background: var(--card); padding: 0.75rem 1rem;
+  border-radius: 10px; border: 1px solid var(--border);
+}
+
+.user-avatar {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: var(--navy); font-size: 0.9rem; flex-shrink: 0;
+}
+
+.user-info strong { display: block; font-size: 0.9rem; }
+.user-info span { font-size: 0.75rem; color: var(--muted); }
+
+.sidebar-nav { margin-top: auto; display: flex; flex-direction: column; gap: 0.4rem; }
+
+.nav-link {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.65rem 0.875rem; border-radius: 8px;
+  text-decoration: none; color: var(--muted);
+  font-size: 0.875rem; transition: all 0.2s;
+}
+
+.nav-link:hover { background: var(--card); color: var(--text); }
+.nav-link.active { background: rgba(201,169,110,0.12); color: var(--gold); }
+.nav-icon { font-size: 1.1rem; }
+
+/* Main */
+.main { padding: 2.5rem; overflow-y: auto; }
+
+.page-header { margin-bottom: 2.5rem; }
+.page-header .label { font-size: 0.7rem; letter-spacing: 0.15em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.25rem; }
+.page-header h2 { font-family: 'DM Sans', sans-serif; font-size: 2.2rem; font-weight: 700; }
+.page-header p { color: var(--muted); font-size: 0.9rem; margin-top: 0.25rem; }
+
+/* Stats row */
+.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+}
+
+.stat-card .stat-label { font-size: 0.72rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin-bottom: 0.5rem; }
+.stat-card .stat-value { font-family: 'DM Sans', san-serif; font-size: 2rem; color: var(--gold); }
+.stat-card .stat-sub { font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; }
+
+/* 7 day trend */
+.trend-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-title {
+  font-size: 0.72rem; letter-spacing: 0.12em;
+  color: var(--muted); text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.trend-circles { display: flex; gap: 1rem; justify-content: space-between; }
+
+.trend-day { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+
+.trend-circle {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  border: 2px solid var(--card2);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 600; font-size: 0.95rem;
+  color: var(--muted);
+  position: relative;
+  transition: all 0.3s;
+}
+
+.trend-circle.full { border-color: var(--gold); color: var(--gold); background: rgba(201,169,110,0.1); }
+.trend-circle.partial { border-color: var(--muted); color: var(--text); }
+.trend-circle.today { box-shadow: 0 0 0 3px rgba(201,169,110,0.3); }
+
+.trend-label { font-size: 0.72rem; color: var(--muted); }
+.trend-count { font-size: 0.72rem; color: var(--muted); }
+
+/* Heatmap */
+.heatmap-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem;
+}
+
+.heatmap-grid { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.heatmap-row { display: flex; align-items: center; gap: 0.6rem; }
+
+.heatmap-label {
+  font-size: 0.72rem; letter-spacing: 0.08em;
+  color: var(--muted); text-transform: uppercase;
+  width: 65px; text-align: right; flex-shrink: 0;
+}
+
+.heatmap-cells { display: flex; gap: 2px; flex-wrap: nowrap; overflow-x: hidden; }
+
+.cell {
+  width: 13px; height: 13px;
+  border-radius: 3px;
+  background: var(--card2);
+  border: 1px solid rgba(255,255,255,0.04);
+  flex-shrink: 0;
+  transition: all 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+
+.cell:hover { transform: scale(1.3); z-index: 2; }
+.cell.done { background: rgba(201,169,110,0.65); border-color: rgba(201,169,110,0.8); }
+.cell.done-full { background: var(--gold); border-color: var(--gold2); }
+
+/* Tooltip */
+.cell::after {
+  content: attr(data-date);
+  position: absolute;
+  bottom: 120%; left: 50%; transform: translateX(-50%);
+  background: var(--navy); color: var(--text);
+  font-size: 0.65rem; padding: 3px 6px;
+  border-radius: 4px; white-space: nowrap;
+  pointer-events: none; opacity: 0;
+  transition: opacity 0.2s;
+  border: 1px solid var(--border);
+}
+
+.cell:hover::after { opacity: 1; }
+
+@media (max-width: 768px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .main { padding: 1.5rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .trend-circles { gap: 0.5rem; }
+  .trend-circle { width: 40px; height: 40px; font-size: 0.8rem; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="/static/salah-circle-logo-final.svg" width="160" height="160" style="margin-left:auto; margin-right:auto;">
+      <h1>SALAH CIRCLE</h1>
+      <p>Track . Motivate . Grow</p>
+    </div>
+
+    <div class="user-pill">
+      <div class="user-avatar">{{ user_name[0].upper() }}</div>
+      <div class="user-info">
+        <strong>{{ user_name }}</strong>
+        <span>Analytics View</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="/" class="nav-link">
+        <span class="nav-icon"></span> TODAY
+      </a>
+      <a href="/analytics" class="nav-link active">
+        <span class="nav-icon"></span> ANALYTICS
+      </a>
+      <a href="/logout" class="nav-link">
+        <span class="nav-icon"></span> ACCOUNT
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="page-header">
+      <div class="label">Tracker</div>
+      <h2>ANALYTICS</h2>
+      <p>{{ user_name }}'s prayer history and trends</p>
+    </div>
+
+    <!-- Stats -->
+    {% set total_30 = namespace(value=0) %}
+    {% for prayer, days in analytics.heatmap.items() %}
+      {% set total_30.value = total_30.value + (days | selectattr('completed', 'equalto', 1) | list | length) %}
+    {% endfor %}
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Current Streak</div>
+        <div class="stat-value">{{ analytics.streak }}</div>
+        <div class="stat-sub">consecutive full days</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Last 30 Days</div>
+        <div class="stat-value">{{ total_30.value }}</div>
+        <div class="stat-sub">prayers completed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Completion Rate</div>
+        <div class="stat-value">{{ ((total_30.value / 150) * 100) | int }}%</div>
+        <div class="stat-sub"> of possible prayers</div>
+      </div>
+    </div>
+
+    <!-- 7 day trend -->
+    <div class="trend-card">
+      <div class="card-title">7 Day Trend</div>
+      <div class="trend-circles">
+        {% for day in analytics.trend_7 %}
+        <div class="trend-day">
+          <div class="trend-circle {% if day.total == 5 %}full{% elif day.total > 0 %}partial{% endif %} {% if loop.last %}today{% endif %}">
+            {{ day.day }}
+          </div>
+          <span class="trend-count">{{ day.total }}/5</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Heatmap -->
+    <div class="heatmap-card">
+      <div class="card-title">Prayer Trends — Last 30 Days</div>
+      <div class="heatmap-grid">
+        {% for prayer_name in ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'] %}
+        {% set days = analytics.heatmap[prayer_name] %}
+        <div class="heatmap-row">
+          <div class="heatmap-label">{{ prayer_name }}</div>
+          <div class="heatmap-cells">
+            {% for day in days %}
+            <div class="cell {% if day.completed %}done{% endif %}" data-date="{{ day.date }}" title="{{ day.date }}"></div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

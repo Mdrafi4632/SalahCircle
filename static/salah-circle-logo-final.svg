@@ -1,0 +1,31 @@
+<svg width="300" height="300" viewBox="190 26 300 308" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path id="calRing" d="M 340,180 m -122,0 a 122,122 0 1,1 244,0 a 122,122 0 1,1 -244,0"/>
+  </defs>
+  <circle cx="340" cy="180" r="150" fill="none" stroke="#c9a96e" stroke-width="0.5" opacity="0.25"/>
+  <circle cx="340" cy="180" r="144" fill="none" stroke="#9aa8b8" stroke-width="2.5" opacity="0.7"/>
+  <circle cx="340" cy="180" r="141" fill="#112236"/>
+  <text font-family="'Amiri', Georgia, serif" font-size="16" fill="#c9a96e" opacity="0.88" letter-spacing="18">
+    <textPath href="#calRing" startOffset="15%">تتبع · حفّز · انمُ</textPath>
+  </text>
+  <circle cx="340" cy="180" r="112" fill="#0d1b2a"/>
+  <circle cx="340" cy="180" r="112" fill="none" stroke="#c9a96e" stroke-width="1" opacity="0.4"/>
+  <rect x="282" y="217" width="116" height="9" rx="3" fill="#c9a96e" opacity="0.9"/>
+  <rect x="289" y="173" width="13" height="45" rx="2" fill="#c9a96e" opacity="0.75"/>
+  <path d="M289 173 Q295 161 301 173 Z" fill="#c9a96e" opacity="0.9"/>
+  <rect x="291" y="168" width="9" height="4" rx="1" fill="#e8c98a" opacity="0.8"/>
+  <line x1="295" y1="168" x2="295" y2="161" stroke="#c9a96e" stroke-width="1.2"/>
+  <circle cx="295" cy="160" r="2.5" fill="#e8c98a"/>
+  <rect x="378" y="173" width="13" height="45" rx="2" fill="#c9a96e" opacity="0.75"/>
+  <path d="M378 173 Q384 161 391 173 Z" fill="#c9a96e" opacity="0.9"/>
+  <rect x="380" y="168" width="9" height="4" rx="1" fill="#e8c98a" opacity="0.8"/>
+  <line x1="385" y1="168" x2="385" y2="161" stroke="#c9a96e" stroke-width="1.2"/>
+  <circle cx="385" cy="160" r="2.5" fill="#e8c98a"/>
+  <ellipse cx="340" cy="198" rx="42" ry="11" fill="#162a3f"/>
+  <path d="M298 198 Q298 153 340 145 Q382 153 382 198 Z" fill="#c9a96e" opacity="0.88"/>
+  <path d="M312 183 Q320 159 340 154 Q330 163 320 178 Z" fill="#e8c98a" opacity="0.3"/>
+  <line x1="340" y1="145" x2="340" y2="133" stroke="#c9a96e" stroke-width="1.5"/>
+  <circle cx="340" cy="126" r="9" fill="#c9a96e"/>
+  <circle cx="344" cy="124" r="7" fill="#0d1b2a"/>
+  <circle cx="352" cy="118" r="2" fill="#e8c98a"/>
+</svg>
