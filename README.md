@@ -4,18 +4,10 @@
 
 Salah Circle helps Muslims track their five daily prayers (Fajr, Dhuhr, Asr, Maghrib, Isha), see friends' daily progress, and stay consistent through analytics, streaks, and AI-generated encouragement.
 
-📄 **[Technical Report (IEEE format)](docs/Salah_Circle_IEEE.pdf)**
-
-![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)
-![Flask](https://img.shields.io/badge/Flask-REST%20API-black?logo=flask)
-![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?logo=sqlite)
-![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker)
-![GCP](https://img.shields.io/badge/Google%20Cloud-Compute%20Engine-4285F4?logo=googlecloud)
-![Gemini](https://img.shields.io/badge/Google-Gemini%20AI-8E75B2?logo=googlegemini)
 
 ---
 
-## ✨ Features
+## Features
 
 - **Prayer Tracking**: Toggle each of the five daily prayers with one click.
 - **Real-Time Prayer Times**: Daily timings from the [Aladhan API](https://aladhan.com/prayer-times-api) (ISNA method).
@@ -30,7 +22,7 @@ Salah Circle helps Muslims track their five daily prayers (Fajr, Dhuhr, Asr, Mag
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 Browser ──HTTP──▶ Frontend (app.py :5002) ──REST/JSON──▶ Backend API (api.py :5001) ──▶ SQLite (prayer.db)
@@ -49,7 +41,7 @@ Browser ──HTTP──▶ Frontend (app.py :5002) ──REST/JSON──▶ Bac
 
 ---
 
-## 🔌 API Endpoints
+## API Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -64,7 +56,7 @@ Browser ──HTTP──▶ Frontend (app.py :5002) ──REST/JSON──▶ Bac
 
 ---
 
-## 🗄️ Database Schema
+## Database Schema
 
 ```sql
 users   (id, name UNIQUE, created_at)
@@ -74,7 +66,6 @@ prayers (id, user_id → users.id, prayer_name, prayer_date, completed, complete
 
 ---
 
-## 🚀 Getting Started
 
 ### Prerequisites
 - Python 3.9+
@@ -110,7 +101,7 @@ The frontend reaches the API through Docker's internal network (`API_URL=http://
 
 ---
 
-## ☁️ Deployment
+## Deployment
 
 - **Google Compute Engine**: Both services run on a GCE VM (`us-central1`) with ports 5001 and 5002 open.
 - **Docker Hub**:
@@ -125,7 +116,7 @@ docker buildx build --platform linux/amd64,linux/arm64 \
 
 ---
 
-## 🔮 Future Improvements
+## Future Improvements
 
 - Password or OAuth authentication
 - Move from SQLite to Cloud SQL for horizontal scaling
@@ -136,7 +127,7 @@ docker buildx build --platform linux/amd64,linux/arm64 \
 
 ---
 
-## 👤 Author
+## Author
 
 **Md Rafiul Islam Rafi**
 M.S. Student, Fordham University
