@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAFI</title>
+  <meta name="description" content="A student of life and Fordham University graduate, I bring curiosity, academic knowledge, and hands-on experience to my work in enterprise applications, data analytics, and cybersecurity. I currently work as a Technical Application Specialist at Trial Interactive, part of TransPerfect Life Sciences, providing technical solutions for cloud based eClinical applications." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=2" />
+  <link rel="shortcut icon" type="image/png" href="favicon.png?v=2" />
+  <link rel="apple-touch-icon" href="favicon.png?v=2" />
+
+  <!-- Open Graph (Facebook, LinkedIn, WhatsApp, iMessage) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rafiworks.com/" />
+  <meta property="og:site_name" content="Rafi Works" />
+  <meta property="og:title" content="Rafi Works" />
+  <meta property="og:description" content="A student of life and Fordham University graduate, I bring curiosity, academic knowledge, and hands-on experience to my work in enterprise applications, data analytics, and cybersecurity. I currently work as a Technical Application Specialist at Trial Interactive, part of TransPerfect Life Sciences, providing technical solutions for cloud based eClinical applications." />
+  <meta property="og:image" content="https://rafiworks.com/og-image.png?v=2" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Rafi Works — Rafi Islam, Data Scientist and Builder" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://rafiworks.com/" />
+  <meta name="twitter:title" content="Rafi Works" />
+  <meta name="twitter:description" content="A student of life and Fordham University graduate, I bring curiosity, academic knowledge, and hands-on experience to my work in enterprise applications, data analytics, and cybersecurity. I currently work as a Technical Application Specialist at Trial Interactive, part of TransPerfect Life Sciences, providing technical solutions for cloud based eClinical applications." />
+  <meta name="twitter:image" content="https://rafiworks.com/og-image.png?v=2" />
+  <meta name="twitter:image:alt" content="Rafi Works — Rafi Islam, Data Scientist and Builder" />
+
+  <!-- React -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.23.10/babel.min.js"></script>
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Typography: Inter Tight (body) + Fraunces (display serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #0b0f15;
+      --paper: #f8f7f4;
+      --muted: #6b7280;
+      --line: #e5e1d8;
+      --accent: #b45309; /* warm amber - sophisticated, used sparingly */
+    }
+    html { scroll-behavior: smooth; }
+    html, body {
+      overflow-x: clip;
+    }
+    body {
+      font-family: 'Geist', system-ui, -apple-system, sans-serif;
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(to right, rgba(11,15,21,0.018) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(11,15,21,0.018) 1px, transparent 1px);
+      background-size: 48px 48px;
+      color: var(--ink);
+    }
+    .font-display { font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; letter-spacing: -0.02em; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .accent { color: var(--accent); }
+    .border-line { border-color: var(--line); }
+    .bg-paper { background: var(--paper); }
+    .bg-ink { background: var(--ink); }
+    .text-ink { color: var(--ink); }
+    .text-paper { color: var(--paper); }
+    .text-muted { color: var(--muted); }
+    .border-ink { border-color: var(--ink); }
+    .hover\:bg-ink:hover { background: var(--ink); }
+    .hover\:text-paper:hover { color: var(--paper); }
+    .hover\:accent:hover { color: var(--accent); }
+    .hover\:border-ink:hover { border-color: var(--ink); }
+    .bg-paper\/85 { background: rgba(248,247,244,0.85); }
+    .fade-up { animation: fadeUp 0.8s ease-out both; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .underline-link {
+      background-image: linear-gradient(currentColor, currentColor);
+      background-size: 0% 1px;
+      background-repeat: no-repeat;
+      background-position: 0 100%;
+      transition: background-size 0.35s ease;
+    }
+    .underline-link:hover { background-size: 100% 1px; }
+
+    /* Navbar hover effect — animated underline + amber color */
+    .nav-link {
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.25s ease;
+    }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1.5px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-link:hover { color: var(--accent); }
+    .nav-link:hover::after { transform: scaleX(1); }
+
+    /* --- Hero effects --- */
+
+    /* Pulsing live status dot */
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+      flex-shrink: 0;
+      animation: pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot {
+      0%   { box-shadow: 0 0 0 0 rgba(180, 83, 9, 0.55); }
+      70%  { box-shadow: 0 0 0 10px rgba(180, 83, 9, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(180, 83, 9, 0); }
+    }
+
+    /* Hide text caret on focused sections (from anchor-link scrolling) */
+    section, section:focus, h1, h2, h3, h4 {
+      caret-color: transparent;
+      outline: none;
+    }
+
+    /* Blinking typewriter cursor */
+    .type-cursor {
+      display: inline-block;
+      width: 0.06em;
+      height: 0.78em;
+      background: var(--accent);
+      margin-left: 0.12em;
+      vertical-align: baseline;
+      animation: blink 1.05s steps(2) infinite;
+    }
+    @keyframes blink {
+      0%, 49%   { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    /* Staggered word reveal */
+    .stagger-word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(14px);
+      animation: staggerIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    @keyframes staggerIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Buttons: text shifts left + arrow slides in from right */
+    .btn-fill {
+      display: inline-flex;
+      align-items: center;
+      transition: border-color 0.35s ease, color 0.35s ease;
+    }
+    .btn-fill .btn-label {
+      display: inline-block;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-fill:hover { color: var(--accent); border-color: var(--accent); }
+    .btn-fill:hover .btn-label { transform: translateX(-4px); }
+
+    .btn-fill .btn-arrow {
+      display: inline-block;
+      width: 0;
+      margin-left: 0;
+      opacity: 0;
+      overflow: hidden;
+      transform: translateX(-4px);
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity 0.4s ease,
+                  margin-left 0.4s ease,
+                  transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-fill:hover .btn-arrow {
+      width: 1em;
+      margin-left: 0.45em;
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Mobile menu cursor-click icon */
+    .cursor-click {
+      position: relative;
+      display: inline-block;
+      width: 26px;
+      height: 26px;
+    }
+    .cursor-click svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: relative;
+      z-index: 2;
+    }
+    .cursor-click::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1.5px solid var(--accent);
+      opacity: 0;
+      animation: clickPulse 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      z-index: 1;
+    }
+    @keyframes clickPulse {
+      0%   { transform: scale(0.3); opacity: 0.9; }
+      70%  { transform: scale(1.8); opacity: 0; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+
+    .btn-icon {
+      display: inline-flex;
+      align-items: center;
+      width: 14px;
+      height: 14px;
+      margin-right: 7px;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-icon svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .btn-icon.pdf {
+      width: 16px;
+      height: 18px;
+    }
+    .btn-fill:hover .btn-icon {
+      transform: translateX(-4px);
+    }
+
+    /* Stats — staggered fade in + hover lift + underline */
+    .stat-item {
+      position: relative;
+      opacity: 0;
+      animation: fadeUpStat 0.75s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      padding-bottom: 14px;
+      cursor: default;
+    }
+    @keyframes fadeUpStat {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .stat-value {
+      display: inline-block;
+      transition: color 0.3s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .stat-item:hover .stat-value {
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .stat-item::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 1.5px;
+      width: 0;
+      background: var(--accent);
+      transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .stat-item:hover::after { width: 32px; }
+
+    /* Education — hover slide + scroll reveal */
+    .edu-period {
+      transition: color 0.35s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .edu-title {
+      transition: color 0.35s ease;
+    }
+    .edu-entry:hover .edu-period {
+      color: var(--accent);
+      transform: translateX(6px);
+    }
+    .edu-entry:hover .edu-title {
+      color: var(--accent);
+    }
+
+    /* Project modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(11, 15, 21, 0.5);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: fadeIn 0.25s ease-out;
+    }
+    .modal-content {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 620px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      position: relative;
+      animation: modalIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(24px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 22px;
+      line-height: 1;
+      color: var(--muted);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .modal-close:hover {
+      background: var(--line);
+      color: var(--ink);
+    }
+
+    /* Reveal-on-scroll */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .reveal-on-scroll.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Experience — same hover treatment as Education */
+    .exp-period {
+      transition: color 0.35s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .exp-title {
+      transition: color 0.35s ease;
+    }
+    .exp-entry:hover .exp-period {
+      color: var(--accent);
+      transform: translateX(6px);
+    }
+    .exp-entry:hover .exp-title {
+      color: var(--accent);
+    }
+
+    /* Featured project — same hover treatment as Experience/Education */
+    .proj-period {
+      transition: color 0.35s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .proj-title {
+      transition: color 0.35s ease;
+    }
+    .proj-entry:hover .proj-period {
+      color: var(--accent);
+      transform: translateX(6px);
+    }
+    .proj-entry:hover .proj-title {
+      color: var(--accent);
+    }
+
+    /* Other projects list — title slides + turns amber on hover */
+    .more-title {
+      display: inline-block;
+      transition: color 0.35s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .more-entry:hover .more-title {
+      color: var(--accent);
+      transform: translateX(6px);
+    }
+
+    /* Collaborator badge — small monogram with hover tooltip */
+    .collab-badge {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: transparent;
+      cursor: default;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    a.collab-badge { cursor: pointer; }
+    .collab-initials {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      transition: color 0.3s ease;
+    }
+    .collab-badge:hover {
+      border-color: var(--accent);
+      transform: scale(1.08);
+    }
+    .collab-badge:hover .collab-initials {
+      color: var(--accent);
+    }
+    .collab-tooltip {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%) translateY(-4px);
+      white-space: nowrap;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-style: italic;
+      color: var(--muted);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-left: 2px solid var(--accent);
+      border-radius: 4px;
+      padding: 5px 10px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 15;
+      box-shadow: 0 4px 12px rgba(11, 15, 21, 0.06);
+    }
+    .collab-badge:hover .collab-tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Stats — slide + amber on hover */
+    .stat-item {
+      cursor: default;
+    }
+    .stat-value, .stat-label {
+      transition: color 0.35s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .stat-item:hover .stat-value,
+    .stat-item:hover .stat-label {
+      color: var(--accent);
+      transform: translateX(6px);
+    }
+
+    /* Skills — hover-to-reveal context tooltip */
+    .skill-item {
+      position: relative;
+      display: inline-block;
+      cursor: default;
+      padding-right: 8px;
+      z-index: 1;
+    }
+    .skill-item:hover {
+      z-index: 200;
+    }
+    .skill-name {
+      display: inline-block;
+      transition: color 0.25s ease, transform 0.3s ease;
+    }
+    .skill-item:hover .skill-name {
+      color: var(--accent);
+      transform: translateX(3px);
+    }
+    .skill-context {
+      position: absolute;
+      left: 0;
+      top: calc(100% + 6px);
+      max-width: 260px;
+      width: max-content;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      line-height: 1.5;
+      letter-spacing: 0.01em;
+      color: var(--muted);
+      font-style: italic;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-left: 2px solid var(--accent);
+      border-radius: 4px;
+      padding: 6px 10px;
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      pointer-events: none;
+      z-index: 200;
+      box-shadow: 0 6px 20px rgba(11, 15, 21, 0.06);
+    }
+    .skill-item:hover .skill-context {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .grid-noise {
+      background-image:
+        linear-gradient(to right, rgba(11,15,21,0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(11,15,21,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+  </style>
+</head>
+<body class="antialiased">
+  <div id="root"></div>
+
+  <script type="text/babel" data-presets="react">
+    const { useState, useEffect } = React;
+
+    // =====================================================================
+    //  EDIT YOUR INFORMATION BELOW
+    // =====================================================================
+    const DATA = {
+      name: "Rafi Islam",
+      shortName: "RAFI",
+      role: "Data nerd. Builder. Lifelong learner",
+      location: "New York, USA",
+      status: "Based in New York",
+      email: "rafiusa19@gmail.com",
+      github: "https://github.com/Mdrafi4632",
+      linkedin: "https://www.linkedin.com/in/rafi100/",
+      calendly: "#", // replace with your Cal.com / Calendly link, e.g. "https://cal.com/rafi"
+      resumeUrl: "Rafi_Resume.pdf",
+
+      // One-line professional summary used in the hero
+      headline: "MS in Data Science  ·  BSc in Computer Science @ Fordham University",
+
+      // "About" paragraphs (each entry becomes one paragraph)
+      bio: [
+        `A student of life and Fordham University graduate, I bring curiosity, academic knowledge, and hands-on experience to my work in enterprise applications, data analytics, and cybersecurity. I currently work as a Technical Application Specialist at Trial Interactive, part of TransPerfect Life Sciences, where I provide technical solutions for cloud based eClinical applications, diagnose application-level issues, and configure workflows for global life sciences clients.`,
+        `I enjoy analyzing complex data, learning and applying machine learning, and building interactive dashboards that transform data into meaningful insights. In my free time, I enjoy hiking, lifting weights, playing outdoor games, and photography.`,
+      ],
+
+      // Quick stats shown under hero
+      stats: [
+        { value: "10+",    label: "Projects built" },
+        { value: "4+ years", label: "Work experience" },
+        { value: "M.Sc.",  label: "Data Science" },
+        { value: "B.Sc.",  label: "Computer Science" },
+      ],
+
+      // Skills, grouped
+      skills: [
+        {
+          group: "Languages",
+          items: [
+            { name: "Python", note: "Core language across Soccer ML, WHOOP, C–N Coupling, SalahCircle, and Population projects" },
+            { name: "JavaScript", note: "Frontend logic in Masjid NYC and GreenVibes" },
+            { name: "SQL", note: "Queried PostgreSQL, SQLite, and Supabase across full-stack projects" },
+            { name: "HTML/CSS", note: "Used in GreenVibes, Masjid NYC, and this portfolio" },
+          ],
+        },
+        {
+          group: "Machine Learning",
+          items: [
+            { name: "Scikit-learn", note: "Built ML pipelines in Soccer, ScoutIQ, and C–N Coupling projects" },
+            { name: "XGBoost", note: "Best model in ScoutIQ; also used in Soccer and C–N Coupling" },
+            { name: "LightGBM", note: "Primary model in C–N Coupling Reaction Success Modeling" },
+            { name: "Random Forest", note: "Ensemble model in Soccer ML, ScoutIQ, and C–N Coupling" },
+            { name: "Gradient Boosting", note: "Applied in C–N Coupling reaction yield prediction" },
+            { name: "Neural Networks", note: "Used in Soccer Player Market Value Prediction" },
+            { name: "SHAP", note: "Model explainability layer in ScoutIQ scouting decision system" },
+            { name: "Feature Engineering", note: "Engineered 64+ features across ScoutIQ, Soccer ML, and chemistry datasets" },
+          ],
+        },
+        {
+          group: "Data and Analytics",
+          items: [
+            { name: "Pandas", note: "Cleaning and transformation across every data project" },
+            { name: "NumPy", note: "Numerical operations in ML model pipelines" },
+            { name: "EDA", note: "Performed in Population Growth, WHOOP, and Wildfire dashboards" },
+            { name: "ETL", note: "Built MongoDB pipelines for the WHOOP analytics dashboard" },
+            { name: "PCA", note: "Dimensionality reduction in ScoutIQ scouting system" },
+            { name: "Cosine Similarity", note: "Player replacement engine in ScoutIQ" },
+            { name: "Forecasting", note: "Used in Population Growth Analysis Platform" },
+          ],
+        },
+        {
+          group: "Visualization",
+          items: [
+            { name: "Tableau", note: "Wildfire Trends dashboard and Con Edison ticket analytics" },
+            { name: "Streamlit", note: "Interactive dashboards for WHOOP Health Analytics" },
+            { name: "Matplotlib", note: "Charts across Soccer ML and Population projects" },
+            { name: "Excel", note: "Operational dashboards at Con Edison and Fordham IT" },
+          ],
+        },
+        {
+          group: "Web and Backend",
+          items: [
+            { name: "React", note: "Frontend for Masjid NYC community directory and this portfolio" },
+            { name: "Flask", note: "SalahCircle multi-user backend" },
+            { name: "Tailwind CSS", note: "Used in Masjid NYC and this portfolio" },
+            { name: "MongoDB", note: "WHOOP analytics dashboard collections" },
+            { name: "PostgreSQL", note: "Masjid NYC backend via Supabase" },
+            { name: "SQLite", note: "SalahCircle prayer tracking database" },
+            { name: "Supabase", note: "Auth and real-time backend for Masjid NYC" },
+            { name: "REST APIs", note: "Built in SalahCircle; integrated Aladhan and Gemini APIs" },
+          ],
+        },
+        {
+          group: "Cloud, DevOps and Tools",
+          items: [
+            { name: "Docker", note: "Containerized SalahCircle backend services" },
+            { name: "Kubernetes", note: "Deployed SalahCircle workloads on GKE" },
+            { name: "GCP", note: "SalahCircle deployment on Google Cloud VM and GKE" },
+            { name: "Microsoft Azure", note: "Cybersecurity analysis at MSG Entertainment" },
+            { name: "Git", note: "Version control across all projects" },
+            { name: "ServiceNow", note: "Workflow management at Con Edison and Fordham IT" },
+            { name: "Microsoft Defender", note: "Threat analysis at MSG Entertainment" },
+            { name: "SentinelOne", note: "EDR/MDR security monitoring at MSG Entertainment" },
+          ],
+        },
+      ],
+
+      // Featured projects — 3 strongest, larger cards
+      featured: [
+        {
+          title: "Soccer Player Market Value Prediction",
+          period: "Oct 2024 — Dec 2024",
+          summary: "An end-to-end machine learning regression project focused on predicting professional soccer players' transfer market values. Trained on a large dataset of 17,000+ players and 51 features, applying feature engineering, preprocessing, hyperparameter tuning, and comparing ensemble methods including Random Forest, XGBoost, and Neural Networks to benchmark predictive accuracy on player valuations.",
+          context: "Achieved strong predictive accuracy with low MAE and high R², supports sports analytics and scouting decision-making.",
+          tech: ["Python", "Random Forest", "Gradient Boosting", "XGBoost", "Matplotlib", "Feature Engineering", "Scikit-learn"],
+          link: "#",
+          github: "https://github.com/Mdrafi4632/Soccer-Player-Market-Value-Prediction/",
+          report: "Soccer_Player_Market_Value_Report.pdf",
+        },
+        {
+          title: "ScoutIQ - Undervalued Soccer Talent Detection",
+          summary: "A data-driven scouting decision system that identifies undervalued soccer players in Europe's top 5 leagues. Combines a market value prediction model (trained on 2,514 players and 64 engineered features using Linear Regression, Random Forest, and XGBoost with 5-fold cross-validation) with three additional layers: an undervalued talent ranking algorithm, a cosine similarity engine that suggests cheaper replacements for star players, and SHAP-based explainability to justify each recommendation to scouts and analysts.",
+          context: "Best model (XGBoost) achieved R² = 0.75. Undervalued picks were validated against real transfers, beating the market baseline 57.5% vs 42.6%.",
+          tech: ["Python", "XGBoost", "Random Forest", "Scikit-learn", "SHAP", "Cosine Similarity", "PCA", "Feature Engineering", "Pandas", "Matplotlib"],
+          link: "#",
+          github: "https://github.com/Mdrafi4632/ScoutIQ",
+          report: "ScoutIQ_Final_Report.pdf",
+        },
+        {
+          title: "Wearable Health Analytics Dashboard",
+          period: "2025",
+          summary: "Built a wearable health analytics platform combining 2+ years of personal WHOOP data with Fitbit datasets from 30+ users to compare sleep, recovery, strain, and activity patterns across different individuals. Designed MongoDB collections and interactive Streamlit dashboards to transform wearable health data into visual insights, uncovering behavioral trends, recovery patterns, and sleep efficiency through data-driven analysis.",
+          context: "Surfaced behavioral insights across recovery trends, activity levels, and sleep efficiency through correlation analysis.",
+          tech: ["MongoDB", "Python", "Streamlit", "PyMongo", "Pandas", "Data Visualization", "ETL", "Interactive Dashboard"],
+          link: "https://mdrafi4632-health-analytics-dashboard-final-projectapp-eovewu.streamlit.app",
+          github: "https://github.com/Mdrafi4632/health_analytics_dashboard",
+          report: "Wearable_Health_Analytics_Report.pdf",
+        },
+        {
+          title: "C–N Coupling Reaction Success Modeling",
+          period: "2026",
+          summary: "Developed machine learning models to predict the success and yield of chemical reactions using 5,465+ Buchwald–Hartwig reaction records. The project helps reduce failed laboratory experiments by using AI to analyze how molecular structures, catalysts, solvents, and reaction conditions influence reaction outcomes before real-world testing.",
+          context: "Achieved R² = 0.836 and 92.4% classification accuracy (AUC 0.97) using k-way Combinatorial Fusion Analysis, helping reduce failed chemical experiments through AI-assisted reaction outcome prediction.",
+          tech: ["LightGBM", "XGBoost", "Python", "Regression", "Gradient Boosting", "Random Forest", "Ensemble Learning"],
+          link: "#",
+          github: "https://github.com/Mdrafi4632/C-N-Coupling-Reaction-Success-Modeling",
+          report: "CN_Coupling_Reaction_Modeling.pdf",
+        },
+        {
+          title: "SalahCircle | Prayer and Community Platform",
+          period: "2025",
+          summary: "Developed a full-stack multi-user Islamic prayer tracking application using Python Flask, SQLite, and REST APIs, deployed on a Google Cloud VM. Integrated the Google Gemini AI API for personalized motivational content and the Aladhan API for real-time prayer time synchronization. Containerized backend services with Docker and Docker Compose, and prototyped a Kubernetes (GKE) deployment before choosing a Google Cloud VM for the live launch to keep costs low and support the single-node SQLite setup.",
+          context: "Built community social feeds, prayer streak tracking, personalized prayer insights, and 30-day analytics heatmaps to encourage consistent engagement and spiritual habit building.",
+          tech: ["Python Flask", "SQLite", "Docker", "Kubernetes", "GCP", "REST APIs", "Google Gemini API", "Cloud Computing", "Full-Stack Development"],
+          link: "https://34-26-251-206.sslip.io/",
+          github: "https://github.com/Mdrafi4632/SalahCircle",
+          report: "SalahCircle_Report.pdf",
+        },
+      ],
+
+      // Other projects (click-to-expand in modal)
+      more: [
+        {
+          title: "Tracking Flames | Wildfire Trends and Environmental Analysis",
+          period: "Apr 2025 — May 2025",
+          description: "Developed an interactive Tableau dashboard that tells the story of how wildfires have changed across the United States over time by analyzing more than 1.9 million wildfire records from U.S. government environmental datasets. Combined wildfire, climate, and geographic data to uncover patterns related to temperature, drought, land conditions, and regional risk factors. Designed dynamic maps, heatmaps, filters, and trend visualizations that allow users to explore wildfire frequency, severity, and high-risk regions, turning large-scale environmental data into meaningful and actionable insights.",
+          tech: ["Tableau", "Data Visualization", "Environmental Analytics", "NOAA", "USGS", "Dashboard Design", "GIS Analytics", "Big Data"],
+          github: "#",
+          report: "#",
+        },
+        {
+          title: "Masjid NYC | Community Mosque Directory Platform",
+          period: "Feb 2025 — Apr 2025",
+          description: "Built a full-stack community platform designed to help Muslims across New York City easily discover, explore, and review local mosques based on borough, preferences, and community needs. Implemented CRUD functionality, search and filtering features, and mosque rating capabilities to make community engagement more interactive and personalized. Designed a scalable backend architecture capable of handling real-time updates and user-generated content while transforming local mosque discovery into a modern digital experience for the NYC Muslim community.",
+          tech: ["React", "Supabase", "PostgreSQL", "Tailwind CSS", "JavaScript", "Full-Stack", "Authentication", "CRUD", "REST APIs"],
+          github: "#",
+          report: "#",
+        },
+        {
+          title: "Population Growth Forecasting and Analysis Platform",
+          period: "Jul 2024 — Aug 2024",
+          description: "Built a data-driven analytics platform to explore and forecast New York City population growth using demographic and urban development datasets from the U.S. Census Bureau and NYC Department sources. Cleaned and transformed four large-scale datasets with Python and Pandas, then performed exploratory data analysis using line charts, histograms, and scatter plots to uncover trends in population density, migration, and demographic change impacting future city planning.",
+          tech: ["Python", "Pandas", "EDA", "Matplotlib", "CSV Processing", "Forecasting", "Data Visualization", "Urban Analytics"],
+          github: "#",
+          report: "#",
+        },
+        {
+          title: "GreenVibes | Environmental Awareness Initiative",
+          period: "Feb 2024 — Apr 2024",
+          description: "Designed and developed an interactive environmental awareness web application using HTML, CSS, and JavaScript to promote sustainable living and community engagement. Built responsive features including live petition feeds, eco-conscious product reviews, dark mode, and sustainability resources while creating a community-driven experience focused on accessibility and environmental awareness.",
+          tech: ["HTML", "CSS", "JavaScript", "Responsive Design", "Frontend Development", "UI/UX", "Accessibility"],
+          github: "#",
+          report: "#",
+        },
+      ],
+
+      experience: [
+        {
+          role:    "Technical Application Specialist II, Trial Interactive",
+          org:     "TransPerfect",
+          orgUrl:  "https://www.trialinteractive.com/",
+          tagline: "Cloud based, AI-powered eClinical Platform for life sciences",
+          period:  "Sep 2025 — Present",
+          points: [
+            "Provide technical solutions across enterprise life sciences applications, resolving complex issues and configuring workflows for project managers and enterprise clients.",
+            "Coordinate meetings and screenshare sessions with clients to diagnose network, email, and application-level issues, translate business requirements into system configurations and escalate priority issues through standard processes.",
+          ],
+          stack: ["Trial Interactive", "eTMF", "CTMS", "QDMS", "Global Learn", "ManageEngine", "UAT"],
+        },
+        {
+          role:    "Information Security Analyst Intern",
+          org:     "Madison Square Garden Entertainment",
+          orgUrl:  "https://www.msgentertainment.com/",
+          tagline: "World's most iconic live entertainment and sports venues",
+          period:  "May 2024 — Aug 2024",
+          points: [
+            "Analyzed security logs and user activity data to identify high-risk activity and strengthen cybersecurity operations using Microsoft Azure, Defender, and SentinelOne.",
+            "Improved incident response efficiency by analyzing threat patterns, investigating security events, and optimizing escalation workflows across EDR/MDR systems.",
+          ],
+          stack: ["Microsoft Azure", "Microsoft Defender", "SentinelOne", "EDR/MDR"],
+        },
+        {
+          role:    "IT Service Management Analyst Co-Op",
+          org:     "Consolidated Edison",
+          orgUrl:  "https://www.coned.com/en/",
+          tagline: "NYC's largest utility provider serving 10M+ residents",
+          period:  "Aug 2023 — May 2024",
+          points: [
+            "Improved ticket triage efficiency and optimized ServiceNow workflows to support cross-functional teams and resolve 50+ monthly escalations.",
+            "Built Excel and Tableau dashboards using ServiceNow data, analyzing 500+ tickets to generate insights that improved operational efficiency and system reliability.",
+          ],
+          stack: ["ServiceNow", "Tableau", "Excel"],
+        },
+        {
+          role:    "Tech Support and IT Service Desk Assistant",
+          org:     "Fordham University",
+          orgUrl:  "https://www.fordham.edu/",
+          tagline: "Private Jesuit University in New York City",
+          period:  "Jan 2022 — May 2025",
+          points: [
+            "Provided technical and ServiceNow support for students, faculty, and staff, resolving IT and security-related issues to ensure smooth academic operations.",
+            "Improved user experience by troubleshooting technical issues efficiently and reducing phone wait times through effective support and user guidance.",
+          ],
+          stack: ["ServiceNow", "Active Directory", "Help Desk"],
+        },
+      ],
+
+      education: [
+        {
+          period:  "Sep 2024 — Aug 2026",
+          degree:  "Master of Science in Data Science",
+          school:  "Fordham University",
+          gpa:     "GPA 3.40 / 4.00",
+          coursework: "Data Analytics, Data Mining, Visualization, Linear Algebra, NoSQL, Machine Learning, Data Computing, Cloud Computing.",
+        },
+        {
+          period:  "Aug 2021 — May 2025",
+          degree:  "Bachelor of Science in Computer Science",
+          school:  "Fordham University",
+          gpa:     "GPA 3.64 / 4.00",
+          minor:   "Business Administration",
+          coursework: "Data Structures, Algorithms, Database Systems, Operating Systems, Data Communication, Computer Organization.",
+        },
+      ],
+    };
+    // =====================================================================
+
+    // ---------- Layout helpers ----------
+    function Container({ children, className = "" }) {
+      return <div className={`max-w-6xl mx-auto px-6 sm:px-10 ${className}`}>{children}</div>;
+    }
+
+    function SectionLabel({ title }) {
+      return (
+        <div className="flex items-baseline gap-6 mb-12 fade-up">
+          <h2 className="font-display text-3xl sm:text-4xl text-ink whitespace-nowrap">{title}</h2>
+          <span className="hidden sm:block flex-1 h-px bg-[var(--line)]"></span>
+        </div>
+      );
+    }
+
+    // ---------- Navbar ----------
+    function Navbar() {
+      const [open, setOpen] = useState(false);
+      const [scrolled, setScrolled] = useState(false);
+
+      useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 8);
+        window.addEventListener("scroll", onScroll);
+        return () => window.removeEventListener("scroll", onScroll);
+      }, []);
+
+      const links = [
+        { href: "#about", label: "About" },
+        { href: "#projects", label: "Projects" },
+        { href: "#skills", label: "Skills" },
+        { href: "#experience", label: "Experience" },
+        { href: "#education", label: "Education" },
+        { href: "#contact", label: "Contact" },
+      ];
+      return (
+        <header className={`sticky top-0 z-50 transition-all ${scrolled ? "bg-paper/85 backdrop-blur border-b border-line" : "bg-transparent"}`}>
+          <Container className="flex items-center justify-between py-5">
+            <a href="#top" className="font-display text-xl tracking-tight">
+              {DATA.shortName}<span className="accent">.</span>
+            </a>
+            <nav className="hidden md:flex gap-8 text-sm">
+              {links.map(l => (
+                <a key={l.href} href={l.href} className="nav-link text-ink transition-colors">
+                  {l.label}
+                </a>
+              ))}
+            </nav>
+            <span className="hidden md:inline-block font-display text-xl tracking-tight invisible" aria-hidden="true">
+              {DATA.shortName}.
+            </span>
+            <button className="md:hidden p-2" onClick={() => setOpen(!open)} aria-label="menu">
+              {open ? (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M6 6l12 12M6 18L18 6" />
+                </svg>
+              ) : (
+                <span className="cursor-click">
+                  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.5 3.21v15.65l3.86-3.86h5.62L5.5 3.21z" fill="currentColor" stroke="var(--paper)" strokeWidth="0.8" strokeLinejoin="round"/>
+                  </svg>
+                </span>
+              )}
+            </button>
+          </Container>
+          {open && (
+            <div className="md:hidden border-t border-line bg-paper">
+              <Container className="flex flex-col py-4 gap-3 text-sm">
+                {links.map(l => (
+                  <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="py-1">
+                    {l.label}
+                  </a>
+                ))}
+              </Container>
+            </div>
+          )}
+        </header>
+      );
+    }
+
+    // ---------- Hero ----------
+    function Hero() {
+      return (
+        <section id="top" className="relative pt-20 pb-[5.5rem] sm:pt-28 sm:pb-[6.5rem] overflow-hidden">
+          <Container>
+            <p className="font-mono text-sm tracking-widest accent mb-6 fade-up flex items-center gap-2.5">
+              <span className="status-dot"></span>
+              {DATA.status}
+            </p>
+            <h1 className="font-display text-5xl sm:text-7xl md:text-8xl leading-[0.95] text-ink fade-up">
+              {DATA.name}<span className="type-cursor"></span>
+            </h1>
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-muted mt-3 leading-tight">
+              {DATA.role.split('. ').map((part, i, arr) => (
+                <span
+                  key={i}
+                  className="stagger-word"
+                  style={{ animationDelay: `${0.45 + i * 0.22}s` }}
+                >
+                  {part}.{i < arr.length - 1 ? ' ' : ''}
+                </span>
+              ))}
+            </h2>
+            <div className="mt-12 flex flex-wrap gap-3 fade-up">
+              <a href="#projects" className="btn-fill px-6 py-3 rounded-full border border-ink text-sm font-medium text-ink">
+                <span className="btn-label">Projects</span><span className="btn-arrow">→</span>
+              </a>
+              <a href={DATA.resumeUrl} target="_blank" rel="noreferrer" className="btn-fill px-6 py-3 rounded-full border border-ink text-sm font-medium text-ink">
+                <span className="btn-label">Résumé</span><span className="btn-arrow">→</span>
+              </a>
+            </div>
+
+            {/* Stats row */}
+            <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-6 pt-5 fade-up">
+              {DATA.stats.map((s, i) => (
+                <div key={i} className="stat-item">
+                  <div className="stat-value font-display text-3xl text-ink">{s.value}</div>
+                  <div className="stat-label font-mono text-xs tracking-widest text-muted uppercase mt-1">{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </Container>
+        </section>
+      );
+    }
+
+    // ---------- About ----------
+    function About() {
+      return (
+        <section id="about" className="py-24">
+          <Container>
+            <SectionLabel num="01" title="About" />
+            <div className="grid md:grid-cols-3 gap-12">
+              <div className="md:col-span-2 fade-up">
+                {DATA.bio.map((para, i) => (
+                  <p key={i} className={`text-base leading-relaxed text-ink/85 ${i > 0 ? "mt-5" : ""}`}>
+                    {para}
+                  </p>
+                ))}
+              </div>
+              <aside className="text-sm font-mono space-y-3 fade-up">
+                <div>
+                  <div className="text-muted tracking-widest text-[10px] uppercase">Focus</div>
+                  <div className="mt-1">Data · Analytics · Visualization</div>
+                </div>
+                <div>
+                  <div className="text-muted tracking-widest text-[10px] uppercase">What Drives Me</div>
+                  <div className="mt-1">Purpose · Community · Growth</div>
+                </div>
+                <div>
+                  <div className="text-muted tracking-widest text-[10px] uppercase">Beyond Tech</div>
+                  <div className="mt-1">Fitness · Travel · Photography</div>
+                </div>
+              </aside>
+            </div>
+          </Container>
+        </section>
+      );
+    }
+
+    // ---------- Featured work ----------
+    function Work() {
+      const [openProject, setOpenProject] = useState(null);
+
+      useEffect(() => {
+        const handleEsc = (e) => { if (e.key === "Escape") setOpenProject(null); };
+        window.addEventListener("keydown", handleEsc);
+        return () => window.removeEventListener("keydown", handleEsc);
+      }, []);
+
+      useEffect(() => {
+        document.body.style.overflow = openProject ? "hidden" : "";
+        return () => { document.body.style.overflow = ""; };
+      }, [openProject]);
+
+      return (
+        <section id="projects" className="py-24">
+          <Container>
+            <SectionLabel title="Projects" />
+
+            <div className="space-y-20">
+              {DATA.featured.map((p, i) => (
+                <article key={i} className="grid md:grid-cols-12 gap-8 items-start reveal-on-scroll proj-entry">
+                  <div className="md:col-span-8">
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <h3 className="font-display text-xl sm:text-2xl text-ink proj-title">{p.title}</h3>
+                      {p.collaborators && p.collaborators.map((c, k) => (
+                        c.url ? (
+                          <a key={k} href={c.url} target="_blank" rel="noreferrer" className="collab-badge">
+                            <span className="collab-initials">{c.initials}</span>
+                            <span className="collab-tooltip">Collab with {c.name}</span>
+                          </a>
+                        ) : (
+                          <span key={k} className="collab-badge">
+                            <span className="collab-initials">{c.initials}</span>
+                            <span className="collab-tooltip">Collab with {c.name}</span>
+                          </span>
+                        )
+                      ))}
+                    </div>
+                    <p className="mt-3 text-ink/80 leading-relaxed">{p.summary}</p>
+                    <p className="mt-3 text-sm text-muted italic">{p.context}</p>
+                    <div className="mt-5 flex flex-wrap gap-3 text-sm">
+                      {p.github && (
+                        <a href={p.github} target="_blank" rel="noreferrer" className="btn-fill px-4 py-1.5 rounded-full border border-ink text-xs font-medium text-ink">
+                          <span className="btn-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                            </svg>
+                          </span>
+                          <span className="btn-label">Source code</span><span className="btn-arrow">→</span>
+                        </a>
+                      )}
+                      {p.report && (
+                        <a href={p.report} target="_blank" rel="noreferrer" className="btn-fill px-4 py-1.5 rounded-full border border-ink text-xs font-medium text-ink">
+                          <span className="btn-icon pdf" aria-hidden="true">
+                            <svg viewBox="0 0 24 28" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M15 1H4a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7-7zm-1 7V2.5L19.5 8H14z" fill="none" stroke="currentColor" strokeWidth="1.6"/>
+                              <text x="12" y="22" fontFamily="Arial Black, Arial, sans-serif" fontSize="7" fontWeight="900" fill="currentColor" textAnchor="middle" letterSpacing="-0.3">PDF</text>
+                            </svg>
+                          </span>
+                          <span className="btn-label">Technical Report</span><span className="btn-arrow">→</span>
+                        </a>
+                      )}
+                      {p.link && p.link !== "#" && (
+                        <a href={p.link} target="_blank" rel="noreferrer" className="btn-fill px-4 py-1.5 rounded-full border border-ink text-xs font-medium text-ink">
+                          <span className="btn-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+                              <circle cx="12" cy="12" r="10"/>
+                              <path d="M2 12h20"/>
+                              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                            </svg>
+                          </span>
+                          <span className="btn-label">Live app</span><span className="btn-arrow">→</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                  <div className="md:col-span-4 flex flex-wrap gap-1.5 md:justify-end">
+                    {p.tech.map((t, j) => (
+                      <span key={j} className="font-mono text-[11px] tracking-wide px-2.5 py-1 border border-line rounded-full text-ink/70">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            {/* More projects — click any to open modal */}
+            <div className="mt-24 reveal-on-scroll">
+              <h3 className="font-display text-2xl sm:text-3xl mb-2">Other projects</h3>
+              <p className="text-sm text-muted mb-6">Click any project to see details.</p>
+              <div className="grid sm:grid-cols-2 gap-x-12 gap-y-2">
+                {DATA.more.map((m, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setOpenProject(m)}
+                    className="more-entry reveal-on-scroll group flex justify-between items-baseline border-b border-line py-4 hover:border-ink transition text-left w-full"
+                  >
+                    <span className="more-title text-ink">{m.title}</span>
+                    <span className="font-mono text-xs text-muted ml-4 opacity-0 group-hover:opacity-100 transition">View →</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </Container>
+
+          {/* Modal */}
+          {openProject && (
+            <div className="modal-overlay" onClick={() => setOpenProject(null)}>
+              <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                <button onClick={() => setOpenProject(null)} className="modal-close" aria-label="Close">×</button>
+                <h2 className="font-display text-3xl text-ink pr-10">{openProject.title}</h2>
+                {openProject.description && (
+                  <p className="mt-5 text-ink/85 leading-relaxed">{openProject.description}</p>
+                )}
+                {openProject.tech && (
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {(Array.isArray(openProject.tech) ? openProject.tech : openProject.tech.split(" · ")).map((t, j) => (
+                      <span key={j} className="font-mono text-[11px] tracking-wide px-2.5 py-1 border border-line rounded-full text-ink/70">{t}</span>
+                    ))}
+                  </div>
+                )}
+                <div className="mt-7 flex flex-wrap gap-3 text-sm">
+                  {openProject.github && (
+                    <a href={openProject.github} target="_blank" rel="noreferrer" className="btn-fill px-4 py-1.5 rounded-full border border-ink text-xs font-medium text-ink">
+                      <span className="btn-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                        </svg>
+                      </span>
+                      <span className="btn-label">Source code</span><span className="btn-arrow">→</span>
+                    </a>
+                  )}
+                  {openProject.report && (
+                    <a href={openProject.report} target="_blank" rel="noreferrer" className="btn-fill px-4 py-1.5 rounded-full border border-ink text-xs font-medium text-ink">
+                      <span className="btn-icon pdf" aria-hidden="true">
+                        <svg viewBox="0 0 24 28" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M15 1H4a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7-7zm-1 7V2.5L19.5 8H14z" fill="none" stroke="currentColor" strokeWidth="1.6"/>
+                          <text x="12" y="22" fontFamily="Arial Black, Arial, sans-serif" fontSize="7" fontWeight="900" fill="currentColor" textAnchor="middle" letterSpacing="-0.3">PDF</text>
+                        </svg>
+                      </span>
+                      <span className="btn-label">Technical Report</span><span className="btn-arrow">→</span>
+                    </a>
+                  )}
+                  {openProject.link && openProject.link !== "#" && (
+                    <a href={openProject.link} target="_blank" rel="noreferrer" className="btn-fill px-4 py-1.5 rounded-full border border-ink text-xs font-medium text-ink">
+                      <span className="btn-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="12" cy="12" r="10"/>
+                          <path d="M2 12h20"/>
+                          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                      </span>
+                      <span className="btn-label">Live app</span><span className="btn-arrow">→</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </section>
+      );
+    }
+
+    // ---------- Skills ----------
+    function Skills() {
+      return (
+        <section id="skills" className="py-24">
+          <Container>
+            <SectionLabel num="03" title="Skills" />
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
+              {DATA.skills.map((g, i) => (
+                <div key={i} className="reveal-on-scroll">
+                  <h3 className="font-mono text-xs tracking-widest text-muted uppercase mb-3">{g.group}</h3>
+                  <ul className="space-y-1.5">
+                    {g.items.map((it, j) => {
+                      const name = typeof it === "string" ? it : it.name;
+                      const note = typeof it === "string" ? null : it.note;
+                      return (
+                        <li key={j} className="skill-item">
+                          <span className="skill-name text-ink/85">{name}</span>
+                          {note && <span className="skill-context">{note}</span>}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </Container>
+        </section>
+      );
+    }
+
+    // ---------- Experience + Education ----------
+    function Experience() {
+      return (
+        <>
+          <section id="experience" className="py-24">
+            <Container>
+              <SectionLabel title="Experience" />
+              <div className="space-y-14">
+                {DATA.experience.map((e, i) => (
+                  <div key={i} className="grid md:grid-cols-12 gap-6 reveal-on-scroll exp-entry">
+                    <div className="md:col-span-3 font-mono text-xs text-muted tracking-wider pt-1 exp-period">
+                      {e.period}
+                    </div>
+                    <div className="md:col-span-9">
+                      <h3 className="font-display text-xl text-ink exp-title">
+                        {e.role} ·{" "}
+                        {e.orgUrl ? (
+                          <a
+                            href={e.orgUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-muted underline-link"
+                          >
+                            {e.org}
+                          </a>
+                        ) : (
+                          <span className="text-muted">{e.org}</span>
+                        )}
+                      </h3>
+                      {e.tagline && (
+                        <p className="mt-1 text-sm text-muted italic">{e.tagline}</p>
+                      )}
+                      <ul className="mt-4 space-y-2 text-ink/80 leading-relaxed">
+                        {e.points.map((p, j) => (
+                          <li key={j} className="pl-5 relative before:content-['•'] before:absolute before:left-0 before:text-muted">{p}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Container>
+          </section>
+
+          <section id="education" className="py-24">
+            <Container>
+              <SectionLabel title="Education" />
+              <div className="space-y-16">
+                {DATA.education.map((e, i) => (
+                  <div key={i} className="grid md:grid-cols-12 gap-6 reveal-on-scroll edu-entry">
+                    <div className="md:col-span-3 font-mono text-xs text-muted tracking-wider pt-1 edu-period">
+                      {e.period}
+                    </div>
+                    <div className="md:col-span-9 space-y-4">
+                      <div>
+                        <h3 className="font-display text-xl text-ink edu-title">{e.degree}</h3>
+                        <p className="text-muted mt-1">{e.school}</p>
+                        {e.gpa && <p className="font-mono text-xs text-muted mt-1">{e.gpa}</p>}
+                        {e.minor && (
+                          <p className="font-mono text-xs text-muted mt-1">Minor in {e.minor}</p>
+                        )}
+                      </div>
+                      {e.summary && (
+                        <p className="text-ink/80 leading-relaxed">{e.summary}</p>
+                      )}
+                      {e.projects && (
+                        <div>
+                          <p className="font-mono text-[10px] text-muted tracking-widest uppercase">Academic Projects</p>
+                          <ul className="mt-2 space-y-1.5 text-ink/80">
+                            {e.projects.map((p, j) => (
+                              <li key={j} className="pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-muted">{p}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {e.honors && (
+                        <div>
+                          <p className="font-mono text-[10px] text-muted tracking-widest uppercase">Dean's List</p>
+                          <p className="mt-1 text-base text-ink/80 leading-relaxed">{e.honors}</p>
+                        </div>
+                      )}
+                      {e.activities && (
+                        <div>
+                          <p className="font-mono text-[10px] text-muted tracking-widest uppercase">Activities</p>
+                          <p className="mt-1 text-base text-ink/80 leading-relaxed">{e.activities}</p>
+                        </div>
+                      )}
+                      {e.coursework && (
+                        <div>
+                          <p className="font-mono text-[10px] text-muted tracking-widest uppercase">Relevant Coursework</p>
+                          <p className="mt-1 text-[15px] text-muted leading-relaxed">{e.coursework}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Container>
+          </section>
+        </>
+      );
+    }
+
+    // ---------- Contact ----------
+    function Contact() {
+      const [copied, setCopied] = useState(false);
+      const copyEmail = () => {
+        navigator.clipboard.writeText(DATA.email);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 1800);
+      };
+      return (
+        <section id="contact" className="py-28">
+          <Container>
+            <SectionLabel num="05" title="Contact" />
+            <div className="max-w-5xl reveal-on-scroll">
+              <p className="font-display font-light text-2xl sm:text-3xl leading-tight text-ink/90">
+                I am open to data science roles and meaningful collaborations.
+              </p>
+              <p className="mt-6 text-ink/80 leading-relaxed reveal-on-scroll">
+                The fastest way to reach me is by email. I usually reply within a day.
+              </p>
+              <div className="mt-10 flex flex-col items-start sm:flex-row sm:flex-wrap sm:items-center gap-y-4 sm:gap-x-6 sm:gap-y-3 reveal-on-scroll">
+                <button onClick={copyEmail} className="font-mono text-sm border border-ink rounded-full px-5 py-2 hover:bg-ink hover:text-paper transition">
+                  {copied ? "Copied to clipboard" : DATA.email}
+                </button>
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                  <a href={`mailto:${DATA.email}`} className="underline-link text-sm">Send email →</a>
+                  <a href={DATA.linkedin} target="_blank" rel="noreferrer" className="underline-link text-sm">LinkedIn →</a>
+                  <a href={DATA.github} target="_blank" rel="noreferrer" className="underline-link text-sm">GitHub →</a>
+                </div>
+              </div>
+            </div>
+          </Container>
+        </section>
+      );
+    }
+
+    // ---------- Footer ----------
+    function Footer() {
+      return (
+        <footer className="border-t border-line py-8">
+          <Container className="flex justify-center items-center text-xs font-mono text-muted">
+            <div>© {new Date().getFullYear()} {DATA.shortName}</div>
+          </Container>
+        </footer>
+      );
+    }
+
+    function App() {
+      useEffect(() => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("in-view");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+        );
+        document.querySelectorAll(".reveal-on-scroll").forEach((el) => observer.observe(el));
+        return () => observer.disconnect();
+      }, []);
+
+
+      return (
+        <>
+          <Navbar />
+          <main>
+            <Hero />
+            <About />
+            <Work />
+            <Skills />
+            <Experience />
+            <Contact />
+          </main>
+          <Footer />
+        </>
+      );
+    }
+    // Note: Education is rendered inside the Experience component file structure above.
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
